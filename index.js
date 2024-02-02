@@ -1,7 +1,28 @@
 function hasTargetSum(array, target) {
   // Write your algorithm here
+  // Produce Arrays that that do not include the number being summed and then decrement by one every rotation
+  const sums = [];
+
+  for (const num in array) {
+    const slicedArr = array.slice(Number(num) + 1, array.length);
+    const baseNum = array[Number(num)];
+
+    const newSums = slicedArr.map((x) => x + baseNum);
+
+    sums.push(newSums);
+  }
+  const finalSums = sums.join(",").split(',');
+  const finalVal = finalSums.some((x) => x == target);
+  return finalVal
+  
+
+
 }
 
+const ex = [3,8,12,4,11,7]
+const exTarg = 10;
+
+hasTargetSum(ex,exTarg)
 /* 
   Write the Big O time complexity of your function here
 */
